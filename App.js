@@ -2,11 +2,9 @@ import { ScrollView, Text, View } from 'react-native';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Router from './src/components/router/Router';
 
-const GRAPHQL_PORT = 8000;
-
 // Initialize Apollo Client
 const client = new ApolloClient({
-	uri: `http://localhost:${GRAPHQL_PORT}/graphql`,
+	uri: `https://rickandmortyapi.com/graphql`,
 	cache: new InMemoryCache(),
 });
 

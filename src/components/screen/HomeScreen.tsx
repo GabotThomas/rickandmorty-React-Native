@@ -1,14 +1,16 @@
 
 import react from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 
 const HomeScreen = ({ navigation }: any) => {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.text}>Hello World</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Episodes')}>
+                <Text style={styles.text}>Episodes</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
