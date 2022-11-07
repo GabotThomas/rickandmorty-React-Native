@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Router from './src/components/router/Router';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const GRAPHQL_PORT = 8000;
+
+// Initialize Apollo Client
+const client = new ApolloClient({0
+	uri: `http://localhost:${GRAPHQL_PORT}/graphql`,
+	cache: new InMemoryCache(),
+});
+
+function App() {
+	return (
+		<ApolloProvider client={client}>
+			<Router />
+		</ApolloProvider>
+	);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
