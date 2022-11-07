@@ -5,7 +5,7 @@ import Router from './src/components/router/Router';
 const GRAPHQL_PORT = 8000;
 
 // Initialize Apollo Client
-const client = new ApolloClient({0
+const client = new ApolloClient({
 	uri: `http://localhost:${GRAPHQL_PORT}/graphql`,
 	cache: new InMemoryCache(),
 });
