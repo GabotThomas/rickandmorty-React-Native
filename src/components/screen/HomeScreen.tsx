@@ -3,7 +3,7 @@ import react from 'react';
 import { useEffect, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StyleSheet, Text, Image, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, Image, View, Dimensions, TouchableOpacity } from 'react-native';
 
 // Fonts import
 import { useFonts } from 'expo-font';
@@ -30,7 +30,6 @@ const HomeScreen = ({ navigation }: any) => {
 
     const titleImg = require('../../assets/imgs/Title.png')
     const portal = require('../../assets/imgs/RickAndMortyPortal.png')
-    const text = require('../../assets/imgs/TextHome.png')
 
     const imageSizeWidth = (Dimensions.get('screen').width - 40)
 
@@ -39,12 +38,12 @@ const HomeScreen = ({ navigation }: any) => {
             <View style={{height: '15%', justifyContent: 'center'}}>
                 <Image source={titleImg} style={{width: imageSizeWidth, height: '100%'}}></Image>
             </View>
-            <View style={{height: '50%', width: '90%', justifyContent: 'center'}}>
-                <Image source={portal} style={{height: '90%', width: imageSizeWidth}}></Image>
+            <View style={{height: '60%', width: '90%', justifyContent: 'center'}}>
+                <Image source={portal} style={{height: imageSizeWidth, width: imageSizeWidth}}></Image>
             </View>
-            <View style={{height: '20%', justifyContent: 'center'}}>
-                <Image source={text} style={{width: imageSizeWidth, height: '75%'}}></Image>
-            </View>
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.text}>Click to go</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -58,9 +57,18 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#00B5CC',
-        fontSize: 32,
-        borderWidth: 1,
-        fontFamily: 'get_schwifty'
+        fontSize: 24,
+        fontFamily: 'get_schwifty',
+
+    },
+    button: {
+        padding: 20,
+        borderRadius: 50,
+        backgroundColor: '#FFF',
+        shadowColor: '#8FC748',
+        shadowOffset: {width: 0, height: 0},
+        shadowRadius: 25,
+        shadowOpacity: 1,
     }
 });
 
