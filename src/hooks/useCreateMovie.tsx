@@ -1,5 +1,5 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { getAllMoviesQuery } from "./useGetAllMovies";
+import { getEpisodes } from "./useGetEpisodes";
 
 const createMovieMutation = gql`
     mutation CreateMovie($category:String!, $title:String!, $year:Int!) {
@@ -12,8 +12,8 @@ const createMovieMutation = gql`
 
 const useCreateMovie = (onCompleted: () => void) => {
     const [createMovie, { data, loading, error }] = useMutation(createMovieMutation, {
-        'refetchQueries': [getAllMoviesQuery],
-        onCompleted
+        'refetchQueries': [getEpisodes],
+        onCompleted,
     });
     return {
         createMovie,
