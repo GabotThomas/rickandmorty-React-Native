@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }: any) => {
             <View style={{ height: '60%', width: '90%', justifyContent: 'center' }}>
                 <Image source={portal} style={{ height: imageSizeWidth, width: imageSizeWidth }}></Image>
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Episodes')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Characters')}>
                 <Text style={styles.text}>Click to go</Text>
             </TouchableOpacity>
         </SafeAreaView>
