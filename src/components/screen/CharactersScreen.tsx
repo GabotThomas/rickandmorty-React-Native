@@ -17,17 +17,7 @@ const CharactersScreen = ({ navigation }: any) => {
 
     const [characters, loading, error] = useGetCharacters({ page: 1 });
 
-    const statusAlive = ({value}) => {
-        if (value === 'Alive') {
-            return {color: 'green'};
-        } 
-        else if (value === 'Dead') {
-            return {color: 'red'};
-        } 
-        else {
-            return {color: 'gray'};
-        }
-    }
+    const isAlive = 'Alive'
 
     // console.log(characters?.results)
     return (
@@ -38,12 +28,15 @@ const CharactersScreen = ({ navigation }: any) => {
             <Text style={styles.text}>Characters</Text>
             {characters?.results.length &&
                 <FlatList data={characters.results} numColumns={2} renderItem={({ item }) =>
-                <TouchableOpacity style={styles.cards} onPress={() => handleCharacterClick(item)}>
-                    <Image source= {{uri: item.image}} style={{width: '100%', height: 200, borderTopLeftRadius: 8, borderTopRightRadius: 8}}/>
-                    <View style={{padding: 10}}>
+                <TouchableOpacity style={styles.cards} onPress={() => handleCharacterClick(item.id)}>
+                    <View style={styles.image}>
+                        <Image source= {{uri: item.image}} style={{width: '100%', height: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10}}/>
+                    </View>
+                    <View style={{flex: 1, padding: 10, justifyContent: 'space-around'}}>
                         <Text style={styles.text}>{item.name}</Text>
-                        <View>
-                            <Text style={[statusAlive(item.status)]}>{item.status}</Text>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Text style={[isAlive ? styles.alive : styles.dead]}>{item.status}</Text>
+                            <Text style={styles.text}>{'>'}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -56,19 +49,30 @@ const CharactersScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#262626',
     },
     text: {
-        color: '#FFF'
+        color: '#000',
+        fontWeight: 'bold'
     },
     cards: {
         flex: 1,
         margin: 10,
-        borderWidth: 2,
-        borderColor: "red",
+        borderColor: "#FAFAFA",
+        backgroundColor: '#FAFAFA',
         borderRadius: 11,
         width: imageSizeWidth,
-
+        height: 280
+    },
+    image: {
+        width: '100%',
+        height: '75%'
+    },
+    alive: {
+        color: 'green'
+    },
+    dead: {
+        color: 'red'
     }
 });
 
