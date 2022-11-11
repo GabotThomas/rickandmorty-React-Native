@@ -1,32 +1,37 @@
-import react, { Component } from 'react';
+import react, { Component, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, StyleSheet, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import useGetCharacters from '../../hooks/useGetCharacters';
 import CharacterCard from '../card/CharacterCard';
+import Header from '../Header';
 
 
 
 
-const CharactersScreen = ({ navigation }: any) => {
-
+const CharactersScreen = ({ navigation, route }: any) => {
+    const [page, setPage] = useState(route.params?.page || 1)
+    const [characters, loading, error] = useGetCharacters({ page });
     // Navigate to 1 Character //
     const handleCharacterClick = (id: any) =>
         navigation.navigate('Character', { id });
 
+    const handleNext = () => {
+        navigation.navigate('Characters', { page: 2 });
+    }
 
-    const [characters, loading, error] = useGetCharacters({ page: 1 });
+
+
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.text} onPress={() => navigation.goBack()}>Back</Text>
-            <Text style={styles.text}>Prev</Text>
-            <Text style={styles.text}>Next</Text>
-            <Text style={styles.text}>Characters</Text>
-            {characters?.results.length &&
-                <FlatList data={characters.results} numColumns={2} renderItem={({ item }) =>
-                    <CharacterCard character={item} handleClick={handleCharacterClick} />
-                } />
-            }
+            <Header navigation={navigation} title={`Page ${page}`} next={handleNext} />
+            <View>
+                {characters?.results.length &&
+                    <FlatList data={characters.results} numColumns={2} renderItem={({ item }) =>
+                        <CharacterCard character={item} handleClick={handleCharacterClick} />
+                    } />
+                }
+            </View>
         </SafeAreaView>
     );
 }
@@ -34,7 +39,8 @@ const CharactersScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#262626',
+        //backgroundColor: '#262626',
+        backgroundColor: '#000',
     },
     text: {
         color: '#000',
