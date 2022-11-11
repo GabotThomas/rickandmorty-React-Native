@@ -9,7 +9,6 @@ const EpisodeScreen = ({ navigation }: any) => {
 
     const [episodes, loading, error] = useGetEpisodes({ page: 1 });
 
-    console.log(episodes?.results)
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.text}>Episode</Text>

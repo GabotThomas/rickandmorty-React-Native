@@ -1,8 +1,10 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const getCharacter = gql`
-    query GetCharacter($id:Int!){
+    query GetCharacter($id:ID!){
         character(id:$id){
+            id
+            name
             species
             type
             status
@@ -19,9 +21,8 @@ export const getCharacter = gql`
     }
 `;
 
-const useGetCharacter = ({id}) => {
-    const { data, loading, error } = useQuery(getCharacter, { });
-
+const useGetCharacter = (variables: any) => {
+    const { data, loading, error } = useQuery(getCharacter, { variables });
     return [data?.character, loading, error];
 }
 

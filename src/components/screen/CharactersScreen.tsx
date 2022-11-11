@@ -10,8 +10,8 @@ import CharacterCard from '../card/CharacterCard';
 const CharactersScreen = ({ navigation }: any) => {
 
     // Navigate to 1 Character //
-    const handleCharacterClick = (idCharacter: any) =>
-        navigation.navigate('Character', idCharacter);
+    const handleCharacterClick = (id: any) =>
+        navigation.navigate('Character', { id });
 
 
     const [characters, loading, error] = useGetCharacters({ page: 1 });
