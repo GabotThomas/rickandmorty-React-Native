@@ -7,7 +7,6 @@ import { StyleSheet, Text, Image, View, Dimensions, TouchableOpacity } from 'rea
 import ScreenContainer from '../ScreenContainer';
 
 const HomeScreen = ({ navigation }: any) => {
-
     const titleImg = require('../../assets/imgs/Title.png')
     const portal = require('../../assets/imgs/RickAndMortyPortal.png')
 

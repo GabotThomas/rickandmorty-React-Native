@@ -13,7 +13,6 @@ const CharactersScreen = ({ navigation, route }: any) => {
         current: route.params?.page || 1
     })
     const [characters, setCaracters] = useState([]);
-    const [info, setInfo] = useState({});
     const [result, loading, error] = useGetCharacters({ page: pages.current });
 
 
