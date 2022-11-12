@@ -3,7 +3,6 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList, StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
 import useGetCharacter from '../../hooks/useGetCharacter';
-import Header from '../Header';
 
 const CharacterScreen = ({ route, navigation }: any) => {
     const { id } = route.params;
@@ -11,7 +10,6 @@ const CharacterScreen = ({ route, navigation }: any) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header navigation={navigation} />
             <View>
                 <Text style={styles.text}>{character?.name}</Text>
             </View>
@@ -23,7 +21,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
-        padding: 20
     },
     text: {
         color: '#FFF'

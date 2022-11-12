@@ -1,46 +1,62 @@
-import react, { Component, useState } from 'react';
+import react, { Component, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import useGetCharacters from '../../hooks/useGetCharacters';
 import CharacterCard from '../card/CharacterCard';
-import Header from '../Header';
+import Pagination from '../Pagination';
 
 
 
 
 const CharactersScreen = ({ navigation, route }: any) => {
-    const [page, setPage] = useState(route.params?.page || 1)
-    const [characters, loading, error] = useGetCharacters({ page });
+    const [pages, setPages] = useState({
+        current: route.params?.page || 1
+    })
+    const [characters, setCaracters] = useState([]);
+    const [info, setInfo] = useState({});
+    const [result, loading, error] = useGetCharacters({ page: pages.current });
+
+
+    useEffect(() => {
+        if (result?.results) {
+            setCaracters(result.results);
+            setPages({ ...pages, ...result.info })
+        }
+    }, [result])
+
     // Navigate to 1 Character //
-    const handleCharacterClick = (id: any) =>
-        navigation.navigate('Character', { id });
+    const handleCharacterClick = (character) =>
+        navigation.navigate('Character', character);
 
-    const handleNext = () => {
-        navigation.navigate('Characters', { page: 2 });
+    const handlePage = (current: Number) => {
+        setPages({ ...pages, current })
     }
-
-
-
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header navigation={navigation} title={`Page ${page}`} next={handleNext} />
-            <View>
-                {characters?.results.length &&
-                    <FlatList data={characters.results} numColumns={2} renderItem={({ item }) =>
-                        <CharacterCard character={item} handleClick={handleCharacterClick} />
-                    } />
+            {characters.length > 0 &&
+                <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
+                    <CharacterCard character={item} handleClick={handleCharacterClick} />
                 }
-            </View>
-        </SafeAreaView>
+                />
+            }
+            {Object.keys(pages).length > 1 &&
+                <Pagination
+                    current={pages.current}
+                    next={pages.next}
+                    prev={pages.prev}
+                    handlePage={handlePage}
+                />
+            }
+        </SafeAreaView >
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: '#262626',
         backgroundColor: '#000',
+        position: 'relative',
     },
     text: {
         color: '#000',

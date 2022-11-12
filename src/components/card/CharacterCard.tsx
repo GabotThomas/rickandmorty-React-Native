@@ -3,18 +3,17 @@ import { COLUMN_2 } from "../../constants/column";
 
 
 const CharacterCard = ({ character, handleClick }: any) => {
-
-    const isAlive = character.status == 'Alive';
+    const { id, name, status, image } = character;
 
     return (
-        <TouchableOpacity style={styles.cards} onPress={() => handleClick(character.id)}>
+        <TouchableOpacity style={styles.cards} onPress={() => handleClick({ id, name })}>
             <View style={styles.image}>
-                <Image source={{ uri: character.image }} style={{ width: '100%', height: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} />
+                <Image source={{ uri: image }} style={{ width: '100%', height: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} />
             </View>
             <View style={{ flex: 1, padding: 10, justifyContent: 'space-around' }}>
-                <Text style={styles.text}>{character.name}</Text>
+                <Text style={styles.text}>{name}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={styles[character.status]}>{character.status}</Text>
+                    <Text style={styles[status]}>{status}</Text>
                     <Text style={styles.text}>{'>'}</Text>
                 </View>
             </View>
