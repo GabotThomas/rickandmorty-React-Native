@@ -1,23 +1,16 @@
-import react from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, StyleSheet, Text } from 'react-native';
-import useGetEpisodes from '../../hooks/useGetEpisodes';
+import { StyleSheet, Text, View } from 'react-native';
+import useGetEpisode from '../../hooks/useGetEpisode';
 
+const EpisodeScreen = ({ route, navigation }: any) => {
+    const { id } = route.params;
+    const [episode, loading, error] = useGetEpisode({ id });
 
-const EpisodeScreen = ({ navigation }: any) => {
-
-    const [episodes, loading, error] = useGetEpisodes({ page: 1 });
-
-    console.log(episodes?.results)
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.text}>Episode</Text>
-            {episodes?.results.length &&
-                <FlatList data={episodes.results} renderItem={({ item }) =>
-                    <Text style={styles.text} >{item.name}</Text>
-                } />
-            }
+            <View>
+                <Text style={styles.text}>{episode?.name}</Text>
+            </View>
         </SafeAreaView>
     );
 }
@@ -26,10 +19,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
-        padding: 20
     },
     text: {
-        color: 'green'
+        color: '#FFF'
+    },
+    cards: {
+        borderWidth: 5,
+        borderColor: "red"
     }
 });
 

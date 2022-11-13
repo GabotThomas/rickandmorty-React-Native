@@ -1,20 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screen/HomeScreen';
 import EpisodeScreen from '../screen/EpisodeScreen';
+// Fonts import
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+import {
+	createDrawerNavigator
+} from '@react-navigation/drawer';
+import { textTitle } from '../../styleSheets';
+import CharactersRouter from './CharactersRouter';
+import { DRAWER_ROUTER_OPTIONS } from '../../constants/router';
+import EpisodesRouter from './EpisodesRouter';
+
 
 const Router = () => {
-	const Stack = createNativeStackNavigator();
+	const Drawer = createDrawerNavigator();
+	let [fontsLoaded] = useFonts({
+		'get_schwifty': require('../../assets/fonts/get_schwifty.ttf'),
+
+	});
+
+	useEffect(() => {
+		async function prepare() {
+			await SplashScreen.preventAutoHideAsync();
+
+		}
+		prepare();
+	}, []);
+
+	if (!fontsLoaded) return null;
 
 	return (
 		<NavigationContainer>
-			<Stack.Navigator screenOptions={{
-				headerShown: false
-			}}>
-				<Stack.Screen name="Home" component={HomeScreen} />
-				<Stack.Screen name="Episodes" component={EpisodeScreen} />
-			</Stack.Navigator>
+			<Drawer.Navigator
+				initialRouteName="Home"
+				screenOptions={DRAWER_ROUTER_OPTIONS}
+			>
+				<Drawer.Screen
+					name="Home"
+					component={HomeScreen}
+					options={{ title: 'Accueil' }}
+				/>
+				<Drawer.Screen
+					name="Characters"
+					options={{ title: 'Personnages' }}
+					component={CharactersRouter}
+				/>
+				<Drawer.Screen
+					name="Episodes"
+					options={{ title: 'Episodes' }}
+					component={EpisodesRouter}
+				/>
+			</Drawer.Navigator>
 		</NavigationContainer>
 	);
 };
