@@ -1,29 +1,18 @@
 import CharacterScreen from "../screen/CharacterScreen";
-import CharactersScreen from "../screen/CharactersScreen";
-import { HeaderCenter, HeaderLeft, HeaderRight } from '../Header';
+import CharacterListScreen from "../screen/CharacterListScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { STACK_ROUTER_OPTIONS } from "../../constants/router";
 
 const CharactersRouter = () => {
     const Characters = createNativeStackNavigator();
 
-    const options = {
-        headerStyle: {
-            backgroundColor: 'black',
-            color: 'white'
-        },
-        headerTitle: HeaderCenter,
-        headerBackVisible: false,
-        headerRight: HeaderRight,
-        headerLeft: HeaderLeft,
-    };
-
     return (
         <Characters.Navigator
-            screenOptions={{ ...options, }}
+            screenOptions={STACK_ROUTER_OPTIONS}
         >
             <Characters.Screen
                 name="Home"
-                component={CharactersScreen}
+                component={CharacterListScreen}
                 options={{
                     title: 'Personnages'
                 }}
@@ -31,7 +20,7 @@ const CharactersRouter = () => {
             <Characters.Screen
                 name="Character"
                 component={CharacterScreen}
-                options={({ route }) => ({
+                options={({ route }: any) => ({
                     title: route.params.name
                 })}
             />

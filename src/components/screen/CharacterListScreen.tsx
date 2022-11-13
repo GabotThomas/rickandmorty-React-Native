@@ -8,9 +8,11 @@ import Pagination from '../Pagination';
 
 
 
-const CharactersScreen = ({ navigation, route }: any) => {
+const CharacterListScreen = ({ navigation, route }: any) => {
     const [pages, setPages] = useState({
-        current: route.params?.page || 1
+        current: route.params?.page || 1,
+        prev: null,
+        next: null
     })
     const [characters, setCaracters] = useState([]);
     const [result, loading, error] = useGetCharacters({ page: pages.current });
@@ -63,4 +65,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CharactersScreen;
+export default CharacterListScreen;

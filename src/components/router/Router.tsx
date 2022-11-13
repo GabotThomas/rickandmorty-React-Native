@@ -11,6 +11,8 @@ import {
 } from '@react-navigation/drawer';
 import { textTitle } from '../../styleSheets';
 import CharactersRouter from './CharactersRouter';
+import { DRAWER_ROUTER_OPTIONS } from '../../constants/router';
+import EpisodesRouter from './EpisodesRouter';
 
 
 const Router = () => {
@@ -34,19 +36,7 @@ const Router = () => {
 		<NavigationContainer>
 			<Drawer.Navigator
 				initialRouteName="Home"
-				screenOptions={({ route }) => ({
-					drawerPosition: 'right',
-					headerShown: false,
-					drawerActiveBackgroundColor: 'green',
-					drawerContentStyle: {
-						backgroundColor: '#000',
-						borderLeftColor: '#ccc',
-						borderLeftWidth: 2,
-					},
-					drawerLabelStyle: {
-						...textTitle
-					},
-				})}
+				screenOptions={DRAWER_ROUTER_OPTIONS}
 			>
 				<Drawer.Screen
 					name="Home"
@@ -57,6 +47,11 @@ const Router = () => {
 					name="Characters"
 					options={{ title: 'Personnages' }}
 					component={CharactersRouter}
+				/>
+				<Drawer.Screen
+					name="Episodes"
+					options={{ title: 'Episodes' }}
+					component={EpisodesRouter}
 				/>
 			</Drawer.Navigator>
 		</NavigationContainer>
