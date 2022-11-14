@@ -8,10 +8,33 @@ const CharacterScreen = ({ route, navigation }: any) => {
     const { id } = route.params;
     const [character, loading, error] = useGetCharacter({ id });
 
+    console.log(character.episode.name)
+
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text style={styles.text}>{character?.name}</Text>
+            <View style={{flex: 1}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                    <Image source={{uri: character?.image}} style={{height: '100%', flex: 1, marginRight: 5, borderRadius: 10}}/>
+                    <View style={{flex: 1, marginLeft: 5}}>
+                        <Text style={styles.textTitle}>{character?.name}</Text>
+                        <View style={{flex: 1}}>
+                            <View style={{flexDirection: 'row', marginTop: 10, alignItems: 'center'}}>
+                                <View style={[styles.square, styles[character?.status]]}></View>
+                                <Text style={styles.text}>{character?.status}</Text>
+                                <Text style={styles.text}>  -  </Text>
+                                <Text style={styles.text}>{character?.species}</Text>
+                            </View>
+                            <View style={{marginTop: 15}}>
+                                <Text style={{fontWeight: 'bold', color: '#fff'}}>Last known location endpoint:</Text>
+                                <Text style={{marginTop: 5, color: '#fff'}}>{character?.location.name}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={{flex: 1.5, marginTop: 20}}>
+                    <Text style={styles.textTitle}>Episodes</Text>
+                    <Text style={styles.text}>{character?.episode.name}</Text>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -20,14 +43,37 @@ const CharacterScreen = ({ route, navigation }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#262626',
+        padding: 20
+    },
+    textTitle: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 32,
+        alignItems: 'flex-start'
     },
     text: {
-        color: '#FFF'
+        color: '#FFF',
+        alignItems: 'center',
     },
     cards: {
         borderWidth: 5,
         borderColor: "red"
+    },
+    square: {
+        width: 15, 
+        height: 15, 
+        borderRadius: 50,
+        marginRight: 5
+    },
+    'Alive': {
+        backgroundColor: 'green'
+    },
+    'Dead': {
+        backgroundColor: 'red'
+    },
+    'unknown': {
+        backgroundColor: 'gray'
     }
 });
 
