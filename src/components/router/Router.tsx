@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screen/HomeScreen';
-import EpisodeScreen from '../screen/EpisodeScreen';
 // Fonts import
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-
 import {
 	createDrawerNavigator
 } from '@react-navigation/drawer';
-import { textTitle } from '../../styleSheets';
 import CharactersRouter from './CharactersRouter';
 import { DRAWER_ROUTER_OPTIONS } from '../../constants/router';
 import EpisodesRouter from './EpisodesRouter';

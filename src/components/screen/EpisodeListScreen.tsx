@@ -33,7 +33,7 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
     const handlePage = (current: Number) => {
         setPages({ ...pages, current })
     }
-    console.log(episodeImages);
+
     return (
         <SafeAreaView style={styles.container}>
             {characters.length > 0 &&
