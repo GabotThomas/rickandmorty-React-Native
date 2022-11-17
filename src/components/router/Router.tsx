@@ -10,6 +10,7 @@ import {
 import CharactersRouter from './CharactersRouter';
 import { DRAWER_ROUTER_OPTIONS } from '../../constants/router';
 import EpisodesRouter from './EpisodesRouter';
+import LocationsRouter from './LocationsRouter';
 
 
 const Router = () => {
@@ -49,6 +50,11 @@ const Router = () => {
 					name="Episodes"
 					options={{ title: 'Episodes' }}
 					component={EpisodesRouter}
+				/>
+				<Drawer.Screen
+					name="Locations"
+					options={{ title: 'Locations' }}
+					component={LocationsRouter}
 				/>
 			</Drawer.Navigator>
 		</NavigationContainer>
