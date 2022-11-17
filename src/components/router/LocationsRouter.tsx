@@ -4,27 +4,27 @@ import LocationListScreen from "../screen/LocationListScreen"
 import LocationScreen from "../screen/LocationScreen";
 
 const LocationsRouter = () => {
-    const Episodes = createNativeStackNavigator();
+    const Locations = createNativeStackNavigator();
 
     return (
-        <Episodes.Navigator
+        <Locations.Navigator
             screenOptions={STACK_ROUTER_OPTIONS}
         >
-            <Episodes.Screen
+            <Locations.Screen
                 name="Home"
                 component={LocationListScreen}
                 options={{
-                    title: 'Episodes'
+                    title: 'locations'
                 }}
             />
-            <Episodes.Screen
-                name="Episode"
+            <Locations.Screen
+                name="Location"
                 component={LocationScreen}
                 options={({ route }: any) => ({
                     title: route.params.name
                 })}
             />
-        </Episodes.Navigator>
+        </Locations.Navigator>
     )
 }
 
