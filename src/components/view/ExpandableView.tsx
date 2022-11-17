@@ -19,7 +19,7 @@ const ExpandableView = ({ navigation, episodes = [] }) => {
 
     }, [isExpanded, height]);
 
-    // Navigate to 1 Character //
+    // Navigate to 1 Episode //
     const handleEpisodeClick = (episode) =>
         navigation.navigate('Episode', episode);
 
@@ -46,8 +46,8 @@ const ExpandableView = ({ navigation, episodes = [] }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#FAFAFA",
+    container: { 
+        backgroundColor: "gray",
         borderRadius: 10,
         paddingVertical: 10,
         paddingHorizontal: 20
