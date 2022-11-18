@@ -6,6 +6,13 @@ import LocationScreen from "../screen/LocationScreen";
 const LocationsRouter = () => {
     const Locations = createNativeStackNavigator();
 
+    const renameTitle = (title) => {
+        if(title.length > 15) {
+            return title.slice(0, 15) + '...'
+        }
+        return title;
+    }
+
     return (
         <Locations.Navigator
             screenOptions={STACK_ROUTER_OPTIONS}
@@ -21,7 +28,7 @@ const LocationsRouter = () => {
                 name="Location"
                 component={LocationScreen}
                 options={({ route }: any) => ({
-                    title: route.params.name
+                    title: renameTitle(route.params.name)
                 })}
             />
         </Locations.Navigator>

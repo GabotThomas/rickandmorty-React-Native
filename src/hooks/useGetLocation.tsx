@@ -8,7 +8,10 @@ export const getLocation = gql`
             type
             dimension
             residents {
+                id
                 name
+                image
+                status
             }
             created
         }
@@ -17,7 +20,7 @@ export const getLocation = gql`
 
 const useGetLocation = (variables: any) => {
     const { data, loading, error } = useQuery(getLocation, { variables });
-    return [data?.episode, loading, error];
+    return [data?.location, loading, error];
 }
 
 export default useGetLocation;

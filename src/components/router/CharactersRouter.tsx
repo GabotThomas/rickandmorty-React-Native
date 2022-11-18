@@ -1,6 +1,7 @@
 import CharacterScreen from "../screen/CharacterScreen";
 import CharacterListScreen from "../screen/CharacterListScreen";
 import EpisodeScreen from "../screen/EpisodeScreen";
+import LocationScreen from "../screen/LocationScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { STACK_ROUTER_OPTIONS } from "../../constants/router";
 
@@ -36,7 +37,14 @@ const CharactersRouter = () => {
                 name="Episode"
                 component={EpisodeScreen}
                 options={({ route }: any) => ({
-                    title: route.params.name
+                    title: renameTitle(route.params.name)
+                })}
+            />
+            <Characters.Screen
+                name="Location"
+                component={LocationScreen}
+                options={({ route }: any) => ({
+                    title: renameTitle(route.params.name)
                 })}
             />
         </Characters.Navigator>
