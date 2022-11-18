@@ -1,17 +1,16 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native';
 import useGetEpisode from '../../hooks/useGetEpisode';
+import DetailsScreen from '../../constants/DetailsScreen';
 
 const EpisodeScreen = ({ route, navigation }: any) => {
     const { id } = route.params;
     const [episode, loading, error] = useGetEpisode({ id });
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View>
-                <Text style={styles.text}>{episode?.name}</Text>
-            </View>
-        </SafeAreaView>
+        <DetailsScreen
+            name={episode?.name}
+        />
     );
 }
 
