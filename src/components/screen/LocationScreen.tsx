@@ -2,6 +2,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 import useGetLocation from '../../hooks/useGetLocation';
 import CharacterCard from '../card/CharacterCard';
+import ExpandableView from '../view/ExpandableView';
 
 const locationImages = require("../../assets/json/RickandMortyLOCATIONS.json")
 
@@ -9,28 +10,40 @@ const LocationScreen = ({ route, navigation }: any) => {
     const { id } = route.params;
     const [location, loading, error] = useGetLocation({ id });
 
+    const handleCharacterClick = (character) =>
+        navigation.navigate('Character', character);
+
+    3
+
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <View style={{ width: 150, height: 150 }}>
-                    <Image style={{ width: '100%', height: '100%' }} source={{ uri: locationImages[location?.id] }} />
+            <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Image source={{ uri: locationImages[location?.id] }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
+                    <View style={{ flex: 1, marginLeft: 5 }}>
+                        <Text style={[styles.text, styles.textTitle]}>{location?.name}</Text>
+                        <View>
+                            <Text style={{fontWeight: 'bold', color: '#fff', marginTop: 10}}>The dimension in which the location is located:</Text>
+                            <Text style={styles.text}>{location?.dimension}</Text>
+                            <Text style={{fontWeight: 'bold', color: '#fff', marginTop: 10}}>The type of the location:</Text>
+                            <Text style={styles.text}>{location?.type}</Text>
+                        </View>
+                    </View>
                 </View>
-                <Text style={[styles.text, styles.textTitle]}>{location?.name}</Text>
-                <Text style={styles.text}>{location?.dimension}</Text>
-                <Text style={styles.text}>{location?.type}</Text>
-                <Text style={styles.text}>{location?.residents.name}</Text>
-                <View>
+                <View style={{ flex: 2 }}>
+                    <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 32, alignItems: 'flex-start', marginTop: 40, marginBottom: 10}}>Characters</Text>
                     {location?.residents.length > 0 &&
-                        <FlatList
-                            data={location?.residents}
-                            renderItem={({ item }) =>
-                                <CharacterCard
-                                    character={item}
-                                // handleClick={handleEpisodeClick}
+                                <FlatList
+                                    data={location?.residents}
+                                    numColumns={2}
+                                    renderItem={({ item }) =>
+                                        <CharacterCard
+                                            character={item}
+                                            handleClick={handleCharacterClick}
+                                        />
+                                    }
                                 />
                             }
-                        />
-                    }
                 </View>
             </View>
         </SafeAreaView>
