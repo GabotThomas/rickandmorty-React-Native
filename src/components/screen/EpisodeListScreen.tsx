@@ -27,18 +27,18 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
     }, [result])
 
     // Navigate to 1 Character //
-    const handleCharacterClick = (character) =>
-        navigation.navigate('Character', character);
+    const handleEpisodeClick = (episode) =>
+        navigation.navigate('Episode', episode);
 
     const handlePage = (current: Number) => {
         setPages({ ...pages, current })
     }
-    console.log(episodeImages);
+
     return (
         <SafeAreaView style={styles.container}>
             {characters.length > 0 &&
                 <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
-                    <EpisodeCard episode={item} image={episodeImages[item.id]} handleClick={handleCharacterClick} />
+                    <EpisodeCard episode={item} image={episodeImages[item.id]} handleClick={handleEpisodeClick} />
                 }
                 />
             }

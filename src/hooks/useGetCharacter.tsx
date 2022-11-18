@@ -8,6 +8,8 @@ export const getCharacter = gql`
             species
             type
             status
+            gender
+            image
             location {
                 id
                 name
@@ -16,7 +18,13 @@ export const getCharacter = gql`
                 id
                 name
             }
-            gender
+            episode {
+                id
+                name
+                air_date
+                episode
+                created
+            }
         }
     }
 `;

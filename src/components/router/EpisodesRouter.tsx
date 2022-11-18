@@ -18,7 +18,7 @@ const EpisodesRouter = () => {
                 }}
             />
             <Episodes.Screen
-                name="Character"
+                name="Episode"
                 component={EpisodeScreen}
                 options={({ route }: any) => ({
                     title: route.params.name
