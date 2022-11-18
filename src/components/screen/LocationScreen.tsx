@@ -12,10 +12,10 @@ const LocationScreen = ({ route, navigation }: any) => {
     return (
         <SafeAreaView style={styles.container}>
             <View>
-                <View style={{width: 100, height: 100}}>
-                    <Image source={locationImages[location?.id]}/>
+                <View style={{ width: 150, height: 150 }}>
+                    <Image style={{ width: '100%', height: '100%' }} source={{ uri: locationImages[location?.id] }} />
                 </View>
-                <Text style={[styles.text, styles.textTitle] }>{location?.name}</Text>
+                <Text style={[styles.text, styles.textTitle]}>{location?.name}</Text>
                 <Text style={styles.text}>{location?.dimension}</Text>
                 <Text style={styles.text}>{location?.type}</Text>
                 <Text style={styles.text}>{location?.residents.name}</Text>
@@ -26,7 +26,7 @@ const LocationScreen = ({ route, navigation }: any) => {
                             renderItem={({ item }) =>
                                 <CharacterCard
                                     character={item}
-                                    // handleClick={handleEpisodeClick}
+                                // handleClick={handleEpisodeClick}
                                 />
                             }
                         />
