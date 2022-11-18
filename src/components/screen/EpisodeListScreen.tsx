@@ -57,7 +57,7 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#262626',
         position: 'relative',
     },
     text: {

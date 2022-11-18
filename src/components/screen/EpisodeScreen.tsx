@@ -30,7 +30,10 @@ const EpisodeScreen = ({ route, navigation }: any) => {
                     </View>
                 </View>
                 <View style={{ flex: 2 }}>
-                    <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 32, alignItems: 'flex-start', marginTop: 40, marginBottom: 10}}>Characters</Text>
+                    <View style={{flexDirection: "row"}}>
+                        <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 32, alignItems: 'flex-start', marginTop: 40, marginBottom: 10}}>Characters</Text>
+                        <Text style={{marginTop: 40, marginBottom: 10, color: "#ffffff"}}>({episode?.characters.length})</Text>
+                    </View>
                     {episode?.characters.length > 0 &&
                                 <FlatList
                                     data={episode?.characters}
@@ -52,7 +55,8 @@ const EpisodeScreen = ({ route, navigation }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#262626',
+        padding: 20
     },
     text: {
         color: '#FFF'

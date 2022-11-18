@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
-import { textTitle } from "../styleSheets";
+import { text, textTitle } from "../styleSheets";
 
 export const HeaderLeft = (props) => {
     const navigation = useNavigation();
@@ -9,7 +9,7 @@ export const HeaderLeft = (props) => {
     }
     return (
         <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={{ color: '#fff' }}>{'< Back'}</Text>
+            <Text style={text}>{'< Back'}</Text>
         </TouchableOpacity>)
         ;
 }
@@ -27,7 +27,7 @@ export const HeaderRight = (props) => {
 
     return (
         <TouchableOpacity onPress={handleOpen}>
-            <Text style={{ color: '#fff' }}>Menu</Text>
+            <Text style={text}>Menu</Text>
         </TouchableOpacity>
     );
 }
@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
     container: {
         padding: 20,
         flexDirection: 'row',
-        backgroundColor: 'black',
+        backgroundColor: '#262626',
         justifyContent: 'space-between'
     },
-    text: {
-        color: '#FFF',
-    },
+    // text: {
+    //     color: '#FFF',
+    // },
     pagination: {
         flexDirection: 'row',
         justifyContent: 'flex-end'

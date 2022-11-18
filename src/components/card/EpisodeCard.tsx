@@ -13,7 +13,7 @@ const EpisodeCard = ({ episode, image, handleClick }: any) => {
             <View style={{ flex: 1, padding: 10, justifyContent: 'space-around' }}>
                 <Text style={styles.text}>{name}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text>{air_date}</Text>
+                    <Text>{episode.episode}</Text>
                     <Text style={styles.text}>{'>'}</Text>
                 </View>
             </View>
