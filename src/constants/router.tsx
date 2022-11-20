@@ -5,8 +5,7 @@ import { textTitle } from '../styleSheets';
 
 export const STACK_ROUTER_OPTIONS: NativeStackNavigationOptions = {
 	headerStyle: {
-		backgroundColor: '#262626',
-		color: '#fff'
+		backgroundColor: '#262626'
 	},
 	headerTitle: HeaderCenter,
 	headerBackVisible: false,

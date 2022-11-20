@@ -9,7 +9,7 @@ export const HeaderLeft = (props) => {
     }
     return (
         <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={text}>{'< Back'}</Text>
+            <Text style={styles.text}>{'< Back'}</Text>
         </TouchableOpacity>)
         ;
 }
@@ -27,7 +27,7 @@ export const HeaderRight = (props) => {
 
     return (
         <TouchableOpacity onPress={handleOpen}>
-            <Text style={text}>Menu</Text>
+            <Text style={styles.text}>Menu</Text>
         </TouchableOpacity>
     );
 }
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#262626',
         justifyContent: 'space-between'
     },
-    // text: {
-    //     color: '#FFF',
-    // },
+    text: {
+        color: '#FFF',
+    },
     pagination: {
         flexDirection: 'row',
         justifyContent: 'flex-end'
