@@ -6,6 +6,7 @@ import { textTitle } from '../styleSheets';
 export const STACK_ROUTER_OPTIONS: NativeStackNavigationOptions = {
 	headerStyle: {
 		backgroundColor: '#262626',
+		color: '#fff'
 	},
 	headerTitle: HeaderCenter,
 	headerBackVisible: false,
@@ -26,3 +27,14 @@ export const DRAWER_ROUTER_OPTIONS: DrawerNavigationOptions = {
 		...textTitle,
 	},
 };
+
+export const renameTitle = (title) => {
+	if (title.length > 15) {
+		return title.slice(0, 15) + '...'
+	}
+	return title;
+}
+
+export const optionStackScreen = ({ route }: any) => ({
+	title: renameTitle(route.params.name)
+})

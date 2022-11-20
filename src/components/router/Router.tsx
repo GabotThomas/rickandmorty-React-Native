@@ -7,10 +7,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import {
 	createDrawerNavigator
 } from '@react-navigation/drawer';
-import CharactersRouter from './CharactersRouter';
 import { DRAWER_ROUTER_OPTIONS } from '../../constants/router';
-import EpisodesRouter from './EpisodesRouter';
-import LocationsRouter from './LocationsRouter';
+import StackRouter from './StackRouter';
 
 
 const Router = () => {
@@ -35,6 +33,7 @@ const Router = () => {
 			<Drawer.Navigator
 				initialRouteName="Home"
 				screenOptions={DRAWER_ROUTER_OPTIONS}
+				backBehavior={'order'}
 			>
 				<Drawer.Screen
 					name="Home"
@@ -44,17 +43,17 @@ const Router = () => {
 				<Drawer.Screen
 					name="Characters"
 					options={{ title: 'Personnages' }}
-					component={CharactersRouter}
+					component={StackRouter}
 				/>
 				<Drawer.Screen
 					name="Episodes"
 					options={{ title: 'Episodes' }}
-					component={EpisodesRouter}
+					component={StackRouter}
 				/>
 				<Drawer.Screen
 					name="Locations"
 					options={{ title: 'Locations' }}
-					component={LocationsRouter}
+					component={StackRouter}
 				/>
 			</Drawer.Navigator>
 		</NavigationContainer>
