@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     textTitle: {
         color: '#FFF',
         fontWeight: 'bold',
-        fontSize: 32,
+        fontSize: 24,
         alignItems: 'flex-start'
     },
     margin: {

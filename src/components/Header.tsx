@@ -9,7 +9,7 @@ export const HeaderLeft = (props) => {
     }
     return (
         <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.text}>{'< Back'}</Text>
+            <Text style={text}>{'Back'}</Text>
         </TouchableOpacity>)
         ;
 }
@@ -27,7 +27,7 @@ export const HeaderRight = (props) => {
 
     return (
         <TouchableOpacity onPress={handleOpen}>
-            <Text style={styles.text}>Menu</Text>
+            <Text style={text}>Menu</Text>
         </TouchableOpacity>
     );
 }

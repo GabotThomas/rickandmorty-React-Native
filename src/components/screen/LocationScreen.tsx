@@ -32,7 +32,7 @@ const LocationScreen = ({ route, navigation }: any) => {
                 </View>
                 <View style={{ flex: 2 }}>
                     <View style={{flexDirection: "row"}}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 32, alignItems: 'flex-start', marginTop: 40, marginBottom: 10}}>Characters</Text>
+                        <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 24, alignItems: 'flex-start', marginTop: 40, marginBottom: 10}}>Characters</Text>
                         <Text style={{marginTop: 40, marginBottom: 10, color: "#ffffff"}}>({location?.residents.length})</Text>
                     </View>
                     {location?.residents.length > 0 &&
