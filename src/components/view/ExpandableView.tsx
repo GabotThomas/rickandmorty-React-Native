@@ -53,7 +53,7 @@ const ExpandableView = ({ navigation, episodes = [] }) => {
 
 const styles = StyleSheet.create({
     container: { 
-        backgroundColor: "gray",
+        backgroundColor: "#333333",
         borderRadius: 10,
         paddingVertical: 10,
         paddingHorizontal: 20,
