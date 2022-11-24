@@ -6,6 +6,14 @@ export const getEpisode = gql`
             id
             name
             air_date
+            characters {
+                id
+                name
+                image
+                status
+            }
+            episode
+            created
         }
     }
 `;

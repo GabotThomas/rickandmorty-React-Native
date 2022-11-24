@@ -1,8 +1,5 @@
 
 import react from 'react';
-import { useEffect, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, Image, View, Dimensions, TouchableOpacity } from 'react-native';
 import ScreenContainer from '../ScreenContainer';
 

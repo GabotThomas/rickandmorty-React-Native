@@ -5,9 +5,16 @@ import { FlatList, StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, 
 import useGetCharacter from '../../hooks/useGetCharacter';
 import ExpandableView from '../view/ExpandableView';
 
-const CharacterScreen = ({ route, navigation }: any) => {
+const CharacterScreen = ({ route, navigation, locations }: any) => {
     const { id } = route.params;
     const [character, loading, error] = useGetCharacter({ id });
+
+    // Navigate to 1 Episode //
+    const handleLocationClick = (location) =>
+        navigation.navigate('Location', location);
+
+    3
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flex: 1 }}>
@@ -24,7 +31,7 @@ const CharacterScreen = ({ route, navigation }: any) => {
                             </View>
                             <View style={{ marginTop: 15 }}>
                                 <Text style={{ fontWeight: 'bold', color: '#fff' }}>Last known location endpoint:</Text>
-                                <Text style={{ marginTop: 5, color: '#fff' }}>{character?.location.name}</Text>
+                                <TouchableOpacity onPress={() => navigation.navigate("Location",character?.location)}><Text style={{ marginTop: 5, color: '#fff' }}>{character?.location.name}</Text></TouchableOpacity>
                             </View>
                         </View>
                     </View>

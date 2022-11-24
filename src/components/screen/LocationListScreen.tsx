@@ -1,24 +1,22 @@
-import react, { Component, useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
-import useGetCharacters from '../../hooks/useGetCharacters';
-import CharacterCard from '../card/CharacterCard';
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import useGetLocations from "../../hooks/useGetLocations";
 import Pagination from '../Pagination';
-import useGetEpisodes from '../../hooks/useGetEpisodes';
-import EpisodeCard from '../card/EpisodeCard';
-import { listStyle } from '../../styleSheets';
+import LocationCard from '../card/LocationCard';
+import { listStyle } from "../../styleSheets";
 
-const episodeImages = require('../../assets/json/RickandMortyEPISODES.json');
+const locationImages = require("../../assets/json/RickandMortyLOCATIONS.json")
 
-const EpisodeListScreen = ({ navigation, route }: any) => {
+
+const LocationListScreen = ({ navigation, route }: any) => {
     const [pages, setPages] = useState({
         current: route.params?.page || 1,
         prev: null,
         next: null
     })
     const [characters, setCaracters] = useState([]);
-    const [result, loading, error] = useGetEpisodes({ page: pages.current });
-
+    const [result, loading, error] = useGetLocations({ page: pages.current });
 
     useEffect(() => {
         if (result?.results) {
@@ -27,9 +25,9 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
         }
     }, [result])
 
-    // Navigate to 1 Character //
-    const handleEpisodeClick = (episode) =>
-        navigation.navigate('Episode', episode);
+    // Navigate to 1 Location //
+    const handleCharacterClick = (location) =>
+        navigation.navigate('Location', location);
 
     const handlePage = (current: Number) => {
         setPages({ ...pages, current })
@@ -39,7 +37,7 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
         <SafeAreaView style={listStyle}>
             {characters.length > 0 &&
                 <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
-                    <EpisodeCard episode={item} image={episodeImages[item.id]} handleClick={handleEpisodeClick} />
+                    <LocationCard location={item} image={locationImages[item.id]} handleClick={handleCharacterClick} />
                 }
                 />
             }
@@ -53,6 +51,7 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
             }
         </SafeAreaView >
     );
+
 }
 
-export default EpisodeListScreen;
+export default LocationListScreen;

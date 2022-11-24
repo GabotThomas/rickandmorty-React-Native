@@ -1,9 +1,10 @@
-import { TouchableOpacity, View, Text, Image } from "react-native"
+import React from "react";
+import { TouchableOpacity, View, Image, Text } from "react-native";
 import { cardStyle, imageCardStyle, text } from "../../styleSheets";
 
 
-const EpisodeCard = ({ episode, image, handleClick }: any) => {
-    const { id, name } = episode;
+const LocationCard = ({ location, image, handleClick }: any) => {
+    const { id, name, dimension } = location;
 
     return (
         <TouchableOpacity style={cardStyle} onPress={() => handleClick({ id, name })}>
@@ -13,7 +14,7 @@ const EpisodeCard = ({ episode, image, handleClick }: any) => {
             <View style={{ flex: 1, padding: 10, justifyContent: 'space-around' }}>
                 <Text style={text}>{name}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text>{episode.episode}</Text>
+                    <Text>{dimension}</Text>
                     <Text style={text}>{'>'}</Text>
                 </View>
             </View>
@@ -21,4 +22,5 @@ const EpisodeCard = ({ episode, image, handleClick }: any) => {
     )
 }
 
-export default EpisodeCard;
+
+export default LocationCard;

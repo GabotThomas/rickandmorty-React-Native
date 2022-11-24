@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const getCharacters = gql`
-    query GetCharacters($page:Int!){
-        characters(page:$page){
+    query GetCharacters($page:Int!, $filter:FilterCharacter){
+        characters(page:$page, filter:$filter){
             info {
                 count
                 pages
@@ -19,8 +19,8 @@ export const getCharacters = gql`
     }
 `;
 
-const useGetCharacters = ({ page = 1 }) => {
-    const { data, loading, error } = useQuery(getCharacters, { variables: { page } });
+const useGetCharacters = ({ page = 1, filter }) => {
+    const { data, loading, error } = useQuery(getCharacters, { variables: { page, filter } });
 
     return [data?.characters, loading, error];
 }

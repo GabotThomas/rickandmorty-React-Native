@@ -12,6 +12,7 @@ export const getLocations = gql`
             results {
                 id
                 name
+                dimension
             }
         }
     }
