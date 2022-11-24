@@ -2,6 +2,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import useGetEpisode from '../../hooks/useGetEpisode';
 import CharacterCard from '../card/CharacterCard';
+import Segment from '../Segment';
 
 const episodeImages = require("../../assets/json/RickandMortyEPISODES.json");
 
@@ -23,38 +24,40 @@ const EpisodeScreen = ({ route, navigation }: any) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{ flex: 1 }}>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Image source={{ uri: episodeImages[episode?.id] }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
-                    <View style={{ flex: 1, marginLeft: 5 }}>
-                        <Text style={[styles.text, styles.textTitle]}>{episode?.name}</Text>
-                        <View>
-                            <Text style={{fontWeight: 'bold', color: '#fff', marginTop: 10}}>The code of the episode:</Text>
-                            <Text style={styles.text}>{episode?.episode}</Text>
-                            <Text style={{fontWeight: 'bold', color: '#fff', marginTop: 10}}>The air date of the episode:</Text>
-                            <Text style={styles.text}>{episode?.air_date}</Text>
+            <Segment loading={loading}>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                        <Image source={{ uri: episodeImages[episode?.id] }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
+                        <View style={{ flex: 1, marginLeft: 5 }}>
+                            <Text style={[styles.text, styles.textTitle]}>{episode?.name}</Text>
+                            <View>
+                                <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The code of the episode:</Text>
+                                <Text style={styles.text}>{episode?.episode}</Text>
+                                <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The air date of the episode:</Text>
+                                <Text style={styles.text}>{episode?.air_date}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={{ flex: 2 }}>
-                    <View style={{flexDirection: "row"}}>
-                        <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 24, alignItems: 'flex-start', marginTop: 40, marginBottom: 10}}>Characters</Text>
-                        <Text style={{marginTop: 40, marginBottom: 10, color: "#ffffff"}}>({episode?.characters.length})</Text>
+                    <View style={{ flex: 2 }}>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={{ color: '#FFF', fontWeight: 'bold', fontSize: 24, alignItems: 'flex-start', marginTop: 40, marginBottom: 10 }}>Characters</Text>
+                            <Text style={{ marginTop: 40, marginBottom: 10, color: "#ffffff" }}>({episode?.characters.length})</Text>
+                        </View>
+                        {episode?.characters.length > 0 &&
+                            <FlatList
+                                data={episode?.characters}
+                                numColumns={2}
+                                renderItem={({ item }) =>
+                                    <CharacterCard
+                                        character={item}
+                                        handleClick={handleCharacterClick}
+                                    />
+                                }
+                            />
+                        }
                     </View>
-                    {episode?.characters.length > 0 &&
-                                <FlatList
-                                    data={episode?.characters}
-                                    numColumns={2}
-                                    renderItem={({ item }) =>
-                                        <CharacterCard
-                                            character={item}
-                                            handleClick={handleCharacterClick}
-                                        />
-                                    }
-                                />
-                            }
                 </View>
-            </View>
+            </Segment>
         </SafeAreaView>
     );
 }

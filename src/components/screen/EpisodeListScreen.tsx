@@ -1,12 +1,11 @@
-import react, { Component, useEffect, useState } from 'react';
+import react, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
-import useGetCharacters from '../../hooks/useGetCharacters';
-import CharacterCard from '../card/CharacterCard';
+import { FlatList } from 'react-native';
 import Pagination from '../Pagination';
 import useGetEpisodes from '../../hooks/useGetEpisodes';
 import EpisodeCard from '../card/EpisodeCard';
 import { listStyle } from '../../styleSheets';
+import Segment from '../Segment';
 
 const episodeImages = require('../../assets/json/RickandMortyEPISODES.json');
 
@@ -37,20 +36,22 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
 
     return (
         <SafeAreaView style={listStyle}>
-            {characters.length > 0 &&
-                <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
-                    <EpisodeCard episode={item} image={episodeImages[item.id]} handleClick={handleEpisodeClick} />
+            <Segment loading={loading}>
+                {characters.length > 0 &&
+                    <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
+                        <EpisodeCard episode={item} image={episodeImages[item.id]} handleClick={handleEpisodeClick} />
+                    }
+                    />
                 }
-                />
-            }
-            {Object.keys(pages).length > 1 &&
-                <Pagination
-                    current={pages.current}
-                    next={pages.next}
-                    prev={pages.prev}
-                    handlePage={handlePage}
-                />
-            }
+                {Object.keys(pages).length > 1 &&
+                    <Pagination
+                        current={pages.current}
+                        next={pages.next}
+                        prev={pages.prev}
+                        handlePage={handlePage}
+                    />
+                }
+            </Segment>
         </SafeAreaView >
     );
 }

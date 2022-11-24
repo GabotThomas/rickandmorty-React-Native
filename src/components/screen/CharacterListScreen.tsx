@@ -1,12 +1,12 @@
 import react, { Component, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import useGetCharacters from '../../hooks/useGetCharacters';
 import CharacterCard from '../card/CharacterCard';
 import Pagination from '../Pagination';
 import { TextInput } from 'react-native-gesture-handler';
 import { listStyle, text, textSchwifty } from '../../styleSheets/index'
-import { color } from 'react-native-reanimated';
+import Segment from '../Segment';
 
 
 
@@ -43,27 +43,31 @@ const CharacterListScreen = ({ navigation, route }: any) => {
 
     return (
         <SafeAreaView style={listStyle}>
-            <View style={{ justifyContent: "center", alignItems: 'center' }}>
-                <Text style={[{ marginBottom: 10 }, textSchwifty]}>Nom du Personnages :</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(value) => handleChange('name', value)}
-                />
-            </View>
-            {characters.length > 0 &&
-                <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
-                    <CharacterCard character={item} handleClick={handleCharacterClick} />
-                }
-                />
-            }
-            {Object.keys(pages).length > 1 &&
-                <Pagination
-                    current={pages.current}
-                    next={pages.next}
-                    prev={pages.prev}
-                    handlePage={handlePage}
-                />
-            }
+            <Segment loading={loading && !filter.name}>
+                <View style={{ justifyContent: "center", alignItems: 'center' }}>
+                    <Text style={[{ marginBottom: 10 }, textSchwifty]}>Nom du Personnages :</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => handleChange('name', value)}
+                    />
+                </View>
+                <Segment loading={loading}>
+                    {characters.length > 0 &&
+                        <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
+                            <CharacterCard character={item} handleClick={handleCharacterClick} />
+                        }
+                        />
+                    }
+                    {Object.keys(pages).length > 1 &&
+                        <Pagination
+                            current={pages.current}
+                            next={pages.next}
+                            prev={pages.prev}
+                            handlePage={handlePage}
+                        />
+                    }
+                </Segment>
+            </Segment>
         </SafeAreaView >
     );
 }

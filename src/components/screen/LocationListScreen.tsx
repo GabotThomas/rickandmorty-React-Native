@@ -5,6 +5,7 @@ import useGetLocations from "../../hooks/useGetLocations";
 import Pagination from '../Pagination';
 import LocationCard from '../card/LocationCard';
 import { listStyle } from "../../styleSheets";
+import Segment from "../Segment";
 
 const locationImages = require("../../assets/json/RickandMortyLOCATIONS.json")
 
@@ -35,20 +36,22 @@ const LocationListScreen = ({ navigation, route }: any) => {
 
     return (
         <SafeAreaView style={listStyle}>
-            {characters.length > 0 &&
-                <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
-                    <LocationCard location={item} image={locationImages[item.id]} handleClick={handleCharacterClick} />
+            <Segment loading={loading}>
+                {characters.length > 0 &&
+                    <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
+                        <LocationCard location={item} image={locationImages[item.id]} handleClick={handleCharacterClick} />
+                    }
+                    />
                 }
-                />
-            }
-            {Object.keys(pages).length > 1 &&
-                <Pagination
-                    current={pages.current}
-                    next={pages.next}
-                    prev={pages.prev}
-                    handlePage={handlePage}
-                />
-            }
+                {Object.keys(pages).length > 1 &&
+                    <Pagination
+                        current={pages.current}
+                        next={pages.next}
+                        prev={pages.prev}
+                        handlePage={handlePage}
+                    />
+                }
+            </Segment>
         </SafeAreaView >
     );
 
