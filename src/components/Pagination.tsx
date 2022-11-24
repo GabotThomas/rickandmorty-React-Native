@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { text, textTitle } from '../styleSheets';
+import { rowBetween, textSchwifty, textTitle } from '../styleSheets';
 
 const Pagination = ({ current = 1, next, prev, handlePage }) => {
 
@@ -7,7 +7,7 @@ const Pagination = ({ current = 1, next, prev, handlePage }) => {
         <View style={styles.container}>
             <TouchableOpacity onPress={() => prev && handlePage(prev)}>
                 <Text
-                    style={{...textTitle, opacity: prev ? 1 : 0 }}
+                    style={{ ...textTitle, opacity: prev ? 1 : 0 }}
                 >
                     Prev
                 </Text>
@@ -28,13 +28,11 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#262626',
         padding: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
+        ...rowBetween
     },
     pagination: {
         flexDirection: 'row',
         justifyContent: 'flex-end'
-
     }
 });
 

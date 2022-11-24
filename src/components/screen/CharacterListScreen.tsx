@@ -5,7 +5,7 @@ import useGetCharacters from '../../hooks/useGetCharacters';
 import CharacterCard from '../card/CharacterCard';
 import Pagination from '../Pagination';
 import { TextInput } from 'react-native-gesture-handler';
-import { text } from '../../styleSheets/index'
+import { listStyle, text, textSchwifty } from '../../styleSheets/index'
 import { color } from 'react-native-reanimated';
 
 
@@ -42,9 +42,9 @@ const CharacterListScreen = ({ navigation, route }: any) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={listStyle}>
             <View style={{ justifyContent: "center", alignItems: 'center' }}>
-                <Text style={[{marginBottom: 10}, text]}>Nom du Personnages :</Text>
+                <Text style={[{ marginBottom: 10 }, textSchwifty]}>Nom du Personnages :</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(value) => handleChange('name', value)}
@@ -69,15 +69,6 @@ const CharacterListScreen = ({ navigation, route }: any) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#262626',
-        position: 'relative',
-    },
-    text: {
-        color: '#000',
-        fontWeight: 'bold',
-    },
     input: {
         borderRadius: 4,
         padding: 15,

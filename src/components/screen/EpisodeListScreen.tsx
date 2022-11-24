@@ -6,6 +6,7 @@ import CharacterCard from '../card/CharacterCard';
 import Pagination from '../Pagination';
 import useGetEpisodes from '../../hooks/useGetEpisodes';
 import EpisodeCard from '../card/EpisodeCard';
+import { listStyle } from '../../styleSheets';
 
 const episodeImages = require('../../assets/json/RickandMortyEPISODES.json');
 
@@ -35,7 +36,7 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={listStyle}>
             {characters.length > 0 &&
                 <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
                     <EpisodeCard episode={item} image={episodeImages[item.id]} handleClick={handleEpisodeClick} />
@@ -53,17 +54,5 @@ const EpisodeListScreen = ({ navigation, route }: any) => {
         </SafeAreaView >
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#262626',
-        position: 'relative',
-    },
-    text: {
-        color: '#000',
-        fontWeight: 'bold',
-    }
-});
 
 export default EpisodeListScreen;

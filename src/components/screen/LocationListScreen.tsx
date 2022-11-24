@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useGetLocations from "../../hooks/useGetLocations";
 import Pagination from '../Pagination';
 import LocationCard from '../card/LocationCard';
+import { listStyle } from "../../styleSheets";
 
 const locationImages = require("../../assets/json/RickandMortyLOCATIONS.json")
 
@@ -33,7 +34,7 @@ const LocationListScreen = ({ navigation, route }: any) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={listStyle}>
             {characters.length > 0 &&
                 <FlatList data={characters} numColumns={2} renderItem={({ item }) =>
                     <LocationCard location={item} image={locationImages[item.id]} handleClick={handleCharacterClick} />
@@ -53,15 +54,4 @@ const LocationListScreen = ({ navigation, route }: any) => {
 
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#262626',
-        position: 'relative',
-    },
-    text: {
-        color: '#000',
-        fontWeight: 'bold',
-    }
-});
 export default LocationListScreen;
