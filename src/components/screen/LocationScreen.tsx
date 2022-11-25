@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 import useGetLocation from '../../hooks/useGetLocation';
 import CharacterCard from '../card/CharacterCard';
 import Segment from '../Segment';
+import { styleScreen } from '../../styleSheets';
 
 const locationImages = require("../../assets/json/RickandMortyLOCATIONS.json")
 
@@ -16,18 +17,18 @@ const LocationScreen = ({ route, navigation }: any) => {
     3
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styleScreen.container}>
             <Segment loading={loading}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Image source={{ uri: locationImages[location?.id] }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
                         <View style={{ flex: 1, marginLeft: 5 }}>
-                            <Text style={[styles.text, styles.textTitle]}>{location?.name}</Text>
+                            <Text style={[styleScreen.text, styleScreen.textTitle]}>{location?.name}</Text>
                             <View>
                                 <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The dimension in which the location is located:</Text>
-                                <Text style={styles.text}>{location?.dimension}</Text>
+                                <Text style={styleScreen.text}>{location?.dimension}</Text>
                                 <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The type of the location:</Text>
-                                <Text style={styles.text}>{location?.type}</Text>
+                                <Text style={styleScreen.text}>{location?.type}</Text>
                             </View>
                         </View>
                     </View>
@@ -54,30 +55,5 @@ const LocationScreen = ({ route, navigation }: any) => {
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#262626',
-        padding: 20
-    },
-    text: {
-        color: '#FFF'
-    },
-    textTitle: {
-        color: '#FFF',
-        fontWeight: 'bold',
-        fontSize: 32,
-        alignItems: 'flex-start'
-    },
-    image: {
-        width: '100%',
-        height: '75%'
-    },
-    cards: {
-        borderWidth: 5,
-        borderColor: "red"
-    }
-});
 
 export default LocationScreen;

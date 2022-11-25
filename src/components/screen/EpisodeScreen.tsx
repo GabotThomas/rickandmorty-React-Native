@@ -3,6 +3,7 @@ import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import useGetEpisode from '../../hooks/useGetEpisode';
 import CharacterCard from '../card/CharacterCard';
 import Segment from '../Segment';
+import { styleScreen } from '../../styleSheets';
 
 const episodeImages = require("../../assets/json/RickandMortyEPISODES.json");
 
@@ -23,18 +24,18 @@ const EpisodeScreen = ({ route, navigation }: any) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styleScreen.container}>
             <Segment loading={loading}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Image source={{ uri: episodeImages[episode?.id] }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
                         <View style={{ flex: 1, marginLeft: 5 }}>
-                            <Text style={[styles.text, styles.textTitle]}>{episode?.name}</Text>
+                            <Text style={[styleScreen.text, styleScreen.textTitle]}>{episode?.name}</Text>
                             <View>
                                 <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The code of the episode:</Text>
-                                <Text style={styles.text}>{episode?.episode}</Text>
+                                <Text style={styleScreen.text}>{episode?.episode}</Text>
                                 <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The air date of the episode:</Text>
-                                <Text style={styles.text}>{episode?.air_date}</Text>
+                                <Text style={styleScreen.text}>{episode?.air_date}</Text>
                             </View>
                         </View>
                     </View>
@@ -61,26 +62,5 @@ const EpisodeScreen = ({ route, navigation }: any) => {
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#262626',
-        padding: 20
-    },
-    text: {
-        color: '#FFF'
-    },
-    cards: {
-        borderWidth: 5,
-        borderColor: "red"
-    },
-    textTitle: {
-        color: '#FFF',
-        fontWeight: 'bold',
-        fontSize: 32,
-        alignItems: 'flex-start'
-    }
-});
 
 export default EpisodeScreen;

@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { COLUMN_2 } from '../constants/column';
 
 export const textTitle = {
@@ -42,3 +43,36 @@ export const imageCardStyle: any = {
 	width: '100%',
 	height: '75%',
 };
+
+export const styleScreen = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#262626',
+		padding: 20,
+	},
+	textTitle: {
+		color: '#FFF',
+		fontWeight: 'bold',
+		fontSize: 32,
+		alignItems: 'flex-start',
+	},
+	text: {
+		color: '#FFF',
+		alignItems: 'center',
+	},
+	square: {
+		width: 15,
+		height: 15,
+		borderRadius: 50,
+		marginRight: 5,
+	},
+	Alive: {
+		backgroundColor: 'green',
+	},
+	Dead: {
+		backgroundColor: 'red',
+	},
+	unknown: {
+		backgroundColor: 'gray',
+	},
+});
