@@ -5,6 +5,7 @@ import { FlatList, StyleSheet, Text, View, Image, Dimensions, TouchableOpacity, 
 import useGetCharacter from '../../hooks/useGetCharacter';
 import ExpandableView from '../view/ExpandableView';
 import Segment from '../Segment';
+import { styleScreen } from '../../styleSheets';
 
 const CharacterScreen = ({ route, navigation, locations }: any) => {
     const { id } = route.params;
@@ -17,19 +18,19 @@ const CharacterScreen = ({ route, navigation, locations }: any) => {
     3
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styleScreen.container}>
             <Segment loading={loading}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Image source={{ uri: character?.image }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
                         <View style={{ flex: 1, marginLeft: 5 }}>
-                            <Text style={styles.textTitle}>{character?.name}</Text>
+                            <Text style={styleScreen.textTitle}>{character?.name}</Text>
                             <View style={{ /*flex: 1 */ }}>
                                 <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
-                                    <View style={[styles.square, styles[character?.status]]}></View>
-                                    <Text style={styles.text}>{character?.status}</Text>
-                                    <Text style={styles.text}>  -  </Text>
-                                    <Text style={styles.text}>{character?.species}</Text>
+                                    <View style={[styleScreen.square, styleScreen[character?.status]]}></View>
+                                    <Text style={styleScreen.text}>{character?.status}</Text>
+                                    <Text style={styleScreen.text}>  -  </Text>
+                                    <Text style={styleScreen.text}>{character?.species}</Text>
                                 </View>
                                 <View style={{ marginTop: 15 }}>
                                     <Text style={{ fontWeight: 'bold', color: '#fff' }}>
@@ -55,52 +56,5 @@ const CharacterScreen = ({ route, navigation, locations }: any) => {
         </SafeAreaView>
     );
 }
-
-const EpisodeCard = ({ episode }) => {
-    return (
-        <Text style={{ color: "#000", marginVertical: 4, fontWeight: 'bold' }}>{episode.name} - {episode.episode}</Text>
-    )
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#262626',
-        padding: 20
-    },
-    textTitle: {
-        color: '#FFF',
-        fontWeight: 'bold',
-        fontSize: 32,
-        alignItems: 'flex-start'
-    },
-    text: {
-        color: '#FFF',
-        alignItems: 'center',
-    },
-    cards: {
-        borderWidth: 5,
-        borderColor: "red"
-    },
-    square: {
-        width: 15,
-        height: 15,
-        borderRadius: 50,
-        marginRight: 5
-    },
-    margin: {
-        marginTop: 40,
-        marginBottom: 10
-    },
-    'Alive': {
-        backgroundColor: 'green'
-    },
-    'Dead': {
-        backgroundColor: 'red'
-    },
-    'unknown': {
-        backgroundColor: 'gray'
-    }
-});
 
 export default CharacterScreen;
