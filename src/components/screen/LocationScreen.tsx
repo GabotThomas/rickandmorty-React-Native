@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 import useGetLocation from '../../hooks/useGetLocation';
 import CharacterCard from '../card/CharacterCard';
 import Segment from '../Segment';
+import { renameTitle } from '../functions.tsx';
 
 const locationImages = require("../../assets/json/RickandMortyLOCATIONS.json")
 
@@ -22,7 +23,7 @@ const LocationScreen = ({ route, navigation }: any) => {
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Image source={{ uri: locationImages[location?.id] }} style={{ height: '100%', flex: 1, marginRight: 5, borderRadius: 10, }} />
                         <View style={{ flex: 1, marginLeft: 5 }}>
-                            <Text style={[styles.text, styles.textTitle]}>{location?.name}</Text>
+                            <Text style={[styles.text, styles.textTitle]}>{renameTitle(location?.name)}</Text>
                             <View>
                                 <Text style={{ fontWeight: 'bold', color: '#fff', marginTop: 10 }}>The dimension in which the location is located:</Text>
                                 <Text style={styles.text}>{location?.dimension}</Text>

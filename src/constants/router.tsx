@@ -1,5 +1,6 @@
 import { DrawerNavigationOptions } from '@react-navigation/drawer';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { renameTitle } from '../components/functions.tsx';
 import { HeaderCenter, HeaderLeft, HeaderRight } from '../components/Header';
 import { textTitle } from '../styleSheets';
 
@@ -26,13 +27,6 @@ export const DRAWER_ROUTER_OPTIONS: DrawerNavigationOptions = {
 		...textTitle,
 	},
 };
-
-export const renameTitle = (title) => {
-	if (title.length > 15) {
-		return title.slice(0, 15) + '...'
-	}
-	return title;
-}
 
 export const optionStackScreen = ({ route }: any) => ({
 	title: renameTitle(route.params.name)

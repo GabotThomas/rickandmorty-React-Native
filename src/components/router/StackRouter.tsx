@@ -3,7 +3,7 @@ import CharacterListScreen from "../screen/CharacterListScreen";
 import EpisodeScreen from "../screen/EpisodeScreen";
 import LocationScreen from "../screen/LocationScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { optionStackScreen, renameTitle, STACK_ROUTER_OPTIONS } from "../../constants/router";
+import { optionStackScreen, STACK_ROUTER_OPTIONS } from "../../constants/router";
 import LocationListScreen from "../screen/LocationListScreen";
 import EpisodeListScreen from "../screen/EpisodeListScreen";
 
